@@ -1,0 +1,38 @@
+// Divide the shape(control z)
+
+var f = function(){
+if(selection.count() != 2) {
+	print("Selection is wrong");
+	return;
+}
+var i1 = selection[0];
+var i2 = selection[1];
+var i3 = [i1 duplicate];
+var i4 = [i2 duplicate];
+//var i5 = [i3 duplicate];
+//var i6 = [i4 duplicate];
+
+var a = NSApplication.sharedApplication();
+var m = a.mainMenu();
+var layer_m = m.itemWithTitle("Layer").submenu();
+var arrange_m = m.itemWithTitle("Arrange").submenu(); //[0] - bring forward
+var combine_m = layer_m.itemWithTitle("Combine").submenu();
+var paths_m = layer_m.itemWithTitle("Paths").submenu();
+
+//[i3 select:true byExpandingSelection:false];
+
+[i1 select:true byExpandingSelection:false];
+[i2 select:true byExpandingSelection:true];
+combine_m.performActionForItemAtIndex(2); // Intersect
+paths_m.performActionForItemAtIndex(2); // Flatten
+
+
+[i3 select:true byExpandingSelection:false];
+[i4 select:true byExpandingSelection:true];
+combine_m.performActionForItemAtIndex(3); // Difference
+paths_m.performActionForItemAtIndex(2); // Flatten
+
+[[doc currentPage] deselectAllLayers];
+
+
+}();
