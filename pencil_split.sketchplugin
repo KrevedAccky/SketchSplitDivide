@@ -1,0 +1,28 @@
+// Split shape with open paths(control e)
+
+var f = function(){
+if(selection.count() != 2) {
+	print("Selection is wrong");
+	return;
+}
+
+var a = NSApplication.sharedApplication();
+var m = a.mainMenu();
+var layer_m = m.itemWithTitle("Layer").submenu();
+var combine_m = layer_m.itemWithTitle("Combine").submenu();
+var paths_m = layer_m.itemWithTitle("Paths").submenu();
+
+var the_shape = selection[0]; // selection is always bottom to top layers
+[the_shape select:false byExpandingSelection:true];
+
+paths_m.performActionForItemAtIndex(paths_m.indexOfItem(paths_m.itemWithTitle("Vectorize Stroke")));
+
+[the_shape select:true byExpandingSelection:true];
+
+//combine_m.performActionForItemAtIndex(combine_m.indexOfItem(combine_m.itemWithTitle("Subtract")));
+//paths_m.performActionForItemAtIndex(paths_m.indexOfItem(paths_m.itemWithTitle("Flatten")));
+
+combine_m.performActionForItemAtIndex(1);
+paths_m.performActionForItemAtIndex(2);
+
+}();
