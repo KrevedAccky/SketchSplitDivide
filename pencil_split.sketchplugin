@@ -1,29 +1,35 @@
 // Split shape with open paths(control e)
 
 var f = function(){
-if(selection.count() != 2) {
-	print("Selection is wrong");
-	return;
-}
+	if(selection.count() != 2) {
+		print("Selection is wrong");
+		return;
+	}
 
-var a = NSApplication.sharedApplication();
-var m = a.mainMenu();
-var layer_m = m.itemWithTitle("Layer").submenu();
-var combine_m = layer_m.itemWithTitle("Combine").submenu();
-var paths_m = layer_m.itemWithTitle("Paths").submenu();
+	var a = NSApplication.sharedApplication();
+	var call_action = function(menuitem) {
+		var action = menuitem.action();
+		print(action);
+		var target = a.targetForAction(action);
+		print(target);
+		[target performSelector: action];
+	};
 
-var the_shape = selection[0]; // selection is always bottom to top layers
-[the_shape select:false byExpandingSelection:true];
+	var m = a.mainMenu();
+	var layer_m = m.itemWithTitle("Layer").submenu();
+	var combine_m = layer_m.itemWithTitle("Combine").submenu();
+	var paths_m = layer_m.itemWithTitle("Paths").submenu();
 
-paths_m.performActionForItemAtIndex(paths_m.indexOfItem(paths_m.itemWithTitle("Vectorize Stroke")));
+	var the_shape = selection[0]; // selection is always bottom to top layers
+	[the_shape select:false byExpandingSelection:true];
 
-[the_shape select:true byExpandingSelection:true];
+	call_action(paths_m.itemWithTitle("Vectorize Stroke"));
 
-//combine_m.performActionForItemAtIndex(combine_m.indexOfItem(combine_m.itemWithTitle("Subtract")));
-//paths_m.performActionForItemAtIndex(paths_m.indexOfItem(paths_m.itemWithTitle("Flatten")));
+	[the_shape select:true byExpandingSelection:true];
 
-combine_m.performActionForItemAtIndex(1);
-paths_m.performActionForItemAtIndex(2); // flatten 
-paths_m.performActionForItemAtIndex(1); //split
+	call_action(combine_m.itemWithTitle("Subtract"));
+	call_action(paths_m.itemWithTitle("Flatten"));
+	call_action(paths_m.itemWithTitle("Split"));
 
+	[[doc currentPage] deselectAllLayers];
 }();
