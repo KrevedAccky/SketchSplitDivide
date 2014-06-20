@@ -23,6 +23,7 @@ paths_m.performActionForItemAtIndex(paths_m.indexOfItem(paths_m.itemWithTitle("V
 //paths_m.performActionForItemAtIndex(paths_m.indexOfItem(paths_m.itemWithTitle("Flatten")));
 
 combine_m.performActionForItemAtIndex(1);
-paths_m.performActionForItemAtIndex(2);
+paths_m.performActionForItemAtIndex(2); // flatten 
+paths_m.performActionForItemAtIndex(1); //split
 
 }();
