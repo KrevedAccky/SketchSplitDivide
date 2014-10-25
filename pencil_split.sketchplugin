@@ -12,7 +12,12 @@ var f = function(){
 		print(action);
 		var target = a.targetForAction(action);
 		print(target);
-		[target performSelector: action];
+
+		var method_signature = [[target class] instanceMethodSignatureForSelector: action];
+		var invocation = [NSInvocation invocationWithMethodSignature: method_signature];
+		[invocation setTarget:target];
+		[invocation setSelector: action];
+		[invocation invoke];
 	};
 
 	var m = a.mainMenu();
