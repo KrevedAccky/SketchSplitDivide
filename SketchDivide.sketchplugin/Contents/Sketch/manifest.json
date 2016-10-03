@@ -1,0 +1,17 @@
+{
+  "name" : "Divide",
+  "identifier" : "pw.accky.sketch.splitdivide",
+  "version" : "1.0",
+  "description" : "Simple plugin for splitting shapes.",
+  "authorEmail" : "konstantin@accky.pw",
+  "author" : "Konstantin Raspopov",
+  "commands" : [
+    {
+      "script" : "divide.js",
+      "handler" : "onRun",
+      "shortcut" : "control z",
+      "name" : "Divide",
+      "identifier" : "divide"
+    }
+  ]
+}
