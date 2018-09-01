@@ -1,6 +1,8 @@
 Divide Sketch Plugin
 =============
 
+### [DEPRECATED] This plugin doesn't support latest versions of Sketch and will not be maintained anymore
+
 Plugins for [Sketch](https://www.sketchapp.com/) app
 
 These plugins are for splitting shapes as shown in examples below.
